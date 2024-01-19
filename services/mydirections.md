@@ -9,7 +9,7 @@ Be creative and use multiple parameters from the API documentation to earn a top
 ## Directions URL
 
 ```
-https://maps.googleapis.com/maps/api/directions/json?origin=CN+Tower&destination=Times+Square&key=AIzaSyCM-WWHYHIKY-do4kquMy9Z4wQaQx51AuE
+https://maps.googleapis.com/maps/api/directions/json?mode=walking&avoid=indoor&origin=place_id:ChIJt76oPPpYwokRR4Vj9oMB7EA&destination=place_id:ChIJb7P5f9FZwokR2HSsdIIDLls&waypoints=place_id:ChIJk470xP5YwokRwm7bM8XAKho%7Cplace_id:ChIJ3RXu5f5YwokRta8Tcg07kwc%7Cplace_id:ChIJmQJIxlVYwokRLgeuocVOGVU&key=AIzaSyCM-WWHYHIKY-do4kquMy9Z4wQaQx51AuE
 ```
 
 Copy/paste the JSON results and save them into the empty file ```mydirections.json``` in this repository
