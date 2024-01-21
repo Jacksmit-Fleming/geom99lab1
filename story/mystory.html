@@ -1,0 +1,101 @@
+<html>
+  <head>
+    <title>My Story</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- playground-hide -->
+    <script>
+      const process = { env: {} };
+      process.env.GOOGLE_MAPS_API_KEY =
+        "AIzaSyCM-WWHYHIKY-do4kquMy9Z4wQaQx51AuE";
+    </script>
+    <!-- playground-hide-end -->
+
+    <link rel="stylesheet" href="./mystory.css" />
+    <script>
+    // Script taken from https://github.com/googlemaps/js-samples/tree/main/samples/advanced-markers-html
+    // and modifed my me to change places and suit my story
+    async function initMap() {
+        // Request needed libraries.
+        const { Map, InfoWindow } = (await google.maps.importLibrary(
+        "maps",
+        ))
+        const { AdvancedMarkerElement, PinElement } =
+        (await google.maps.importLibrary("marker"))
+    
+        const map = new Map(document.getElementById("map"), {
+            center: { lat: 44.983364, lng: 12.331974 },
+            zoom: 6,
+            mapId: "4504f8b37365c3d0"
+        });
+    
+        // Set LatLng and title text for the markers. The first marker (Boynton Pass)
+        // receives the initial focus when tab is pressed. Use arrow keys to
+        // move between markers; press tab again to cycle through the map controls.
+        // Changed this section to reflect the places I visited
+        const tourStops = [
+        {
+            position: { lat: 41.899477, lng: 12.490496 },
+            title: "Rome, Italy: The Roman Colosseum and The Vatican City",
+        },
+        {
+            position: { lat: 43.770184, lng: 11.253481 },
+            title: "Florence, Italy: The Cathedral of Santa Maria",
+        },
+        {
+            position: { lat: 45.437397, lng: 12.326075 },
+            title: "Venice, Italy: The Basilica S.Maria Gloriosa dei Frari",
+        },
+        {
+            position: { lat: 47.808929, lng: 13.055078 },
+            title: "Salzburg, Austria: The Birth Place of Mozart",
+        },
+        {
+            position: { lat: 48.209552, lng: 16.372274 },
+            title: "Vienna, Austria: The Belvedere Palace",
+        },
+        ];
+    
+        // Create an info window to share between markers.
+        const infoWindow = new InfoWindow();
+    
+        // Create the markers.
+        tourStops.forEach(({ position, title }, i) => {
+        const pin = new PinElement({
+            glyph: `${i + 1}`,
+        });
+    
+        const marker = new AdvancedMarkerElement({
+            position,
+            map,
+            title: `${i + 1}. ${title}`,
+            content: pin.element,
+        });
+    
+        // Add a click listener for each marker, and set up the info window.
+        marker.addListener("click", ({ domEvent, latLng }) => {
+            const { target } = domEvent;
+            infoWindow.close();
+            infoWindow.setContent(marker.title);
+            infoWindow.open(marker.map, marker);
+        });
+        });
+  }
+  </script>
+  </head>
+  <body>
+
+    <h1>My Adventure through Italy and Austria</h1>
+
+    <p>
+        During my time in high school I was in the music program and in with that required being in the band as well. 
+        With this my High school and a fairly comprehensive music program and offered various trips for the band to go on. 
+        One of them being a week trip to Italy and Austria visiting 5 Cites. In the map below I show the 5 places we visited 
+        with clickable tags that explain some of the things we did in each city. The tags are order in the order they were visited.
+    </p>
+
+    <div id="map"></div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCM-WWHYHIKY-do4kquMy9Z4wQaQx51AuE&callback=initMap&v=weekly" async>
+    </script>
+  </body>
+</html>
